@@ -78,6 +78,9 @@
   #describe::first-letter {
     text-transform: capitalize;
   }
+  #city::first-letter{
+    text-transform: capitalize;
+  }
   #weather-icon {
     margin: 0 auto;
     text-align: center;

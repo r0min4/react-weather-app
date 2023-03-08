@@ -9,7 +9,7 @@ import Footer from "./Footer.js";
 export default function App() {
   let[city , setCity] =useState(""); 
   let[humidity , setHumidity] =useState(""); 
-  let[wind , setWind] =useState(""); 
+  let[wind , setWind] =useState(0); 
   let[temp, setTemp] =useState(""); 
   let[description, setDescription] =useState(""); 
   let[dt, setDt] =useState(0);
@@ -20,7 +20,7 @@ export default function App() {
     setWind(response.data.wind.speed);
     setTemp(response.data.main.temp);
     setDescription(response.data.weather[0].description);
-    setDt(response.data.main.dt);
+    setDt(response.data.dt);
     setIcon(response.data.weather[0].icon);
     console.log(response.data.main.temp);
   }
@@ -32,45 +32,87 @@ export default function App() {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=743bee57fddbfaf52447193a87d5dd25&units=metric`;
     axios.get(url).then(result); 
   }
-      
-  return (
-    <div className="container">
-      <div className="weather-app">
-      <form className="search-form" id="search-form">
-        <div className="row">
-          <div className="col-9">
-            <input
-              // id="search"
-              onChange = {updateCity}
-              type="search"
-              placeholder="Type a city.."
-              autoFocus="on"
-              autoComplete="off"
-              id="city-input"
-              className="form-control shadow-sm"
-            />
-          </div>
 
-          <div className="col-3">
-            <input
-              onClick={searchCity}
-              id="button"
-              type="submit"
-              value="Search"
-              className="form-control btn btn-primary shadow-sm"
-            />
+  if(wind === 0){
+    return (
+      <div className="container">
+        <div className="weather-app">
+        <form className="search-form" id="search-form">
+          <div className="row">
+            <div className="col-9">
+              <input
+                // id="search"
+                onChange = {updateCity}
+                type="search"
+                placeholder="Type a city.."
+                autoFocus="on"
+                autoComplete="off"
+                id="city-input"
+                className="form-control shadow-sm"
+              />
+            </div>
+
+            <div className="col-3">
+              <input
+                onClick={searchCity}
+                id="button"
+                type="submit"
+                value="Search"
+                className="form-control btn btn-primary shadow-sm"
+              />
+            </div>
+          </div>
+          
+        </form>
+
+          <div className="row">
+ 
           </div>
         </div>
-        
-      </form>
-      <City city={city} description={description} dt={dt}/>
 
-        <div className="row">
-          <Temp temp={temp} icon={icon}/>
-          <Info humidity={humidity} wind={wind}/>
-        </div>
       </div>
-      <Footer />
-    </div>
-  );
+    );
+  }   
+  else{
+    return (
+      <div className="container">
+        <div className="weather-app">
+        <form className="search-form" id="search-form">
+          <div className="row">
+            <div className="col-9">
+              <input
+                // id="search"
+                onChange = {updateCity}
+                type="search"
+                placeholder="Type a city.."
+                autoFocus="on"
+                autoComplete="off"
+                id="city-input"
+                className="form-control shadow-sm"
+              />
+            </div>
+
+            <div className="col-3">
+              <input
+                onClick={searchCity}
+                id="button"
+                type="submit"
+                value="Search"
+                className="form-control btn btn-primary shadow-sm"
+              />
+            </div>
+          </div>
+          
+        </form>
+        <City city={city} description={description} dt={dt}/>
+
+          <div className="row">
+            <Temp temp={temp} icon={icon}/>
+            <Info humidity={humidity} wind={wind}/>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 }
