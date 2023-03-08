@@ -1,11 +1,12 @@
 import React from "react";
-export default function City() {
+export default function City(props) {
+  let date= new Date(props.dt*1000);
   return (
     <div>
-      <h1 id="city">New York</h1>
+      <h1 id="city"> {props.city}</h1>
       <ul>
-        <li id="date">Last updated: Tuesday 10:00</li>
-        <li id="describe">Cloudy</li>
+        <li id="date">Last updated: {date.toString()}</li>
+        <li id="describe">{props.description}</li>
       </ul>
     </div>
   );

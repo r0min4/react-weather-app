@@ -1,10 +1,10 @@
 import React from "react";
-export default function Info() {
+export default function Info(props) {
   return (
     <div className="col-6">
       <ul>
-        <li id="humidity">Humidity: 80%</li>
-        <li id="wind">Wind: 10 km/h</li>
+        <li id="humidity">Humidity: {props.humidity}% </li>
+        <li id="wind">Wind: {props.wind} km/h</li>
       </ul>
     </div>
   );
