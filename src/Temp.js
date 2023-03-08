@@ -1,6 +1,10 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 export default function Temp(props) {
-  let[degree , setDegree] = useState(props.temp);
+  let [degree , setDegree] = useState(props.temp);
+  useEffect(() => {
+    setDegree(props.temp);
+  }, [props.temp]);
+  let icon = `https://openweathermap.org/img/wn/${props.icon}@2x.png`;
   function toCentigrade(event){
     event.preventDefault();
     setDegree(props.temp);
@@ -14,7 +18,7 @@ export default function Temp(props) {
       <div className="clearfix">
         <div className="float-left all">
           <img
-            src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
+            src={icon}
             alt=""
             id="imgicon"
           />

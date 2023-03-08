@@ -13,6 +13,7 @@ export default function App() {
   let[temp, setTemp] =useState(""); 
   let[description, setDescription] =useState(""); 
   let[dt, setDt] =useState(0);
+  let[icon, setIcon] = useState("");
 
   function result(response){
     setHumidity(response.data.main.humidity);
@@ -20,7 +21,8 @@ export default function App() {
     setTemp(response.data.main.temp);
     setDescription(response.data.weather[0].description);
     setDt(response.data.main.dt);
-
+    setIcon(response.data.weather[0].icon);
+    console.log(response.data.main.temp);
   }
   function updateCity(event){
     setCity(event.target.value);
@@ -64,7 +66,7 @@ export default function App() {
       <City city={city} description={description} dt={dt}/>
 
         <div className="row">
-          <Temp temp={temp}/>
+          <Temp temp={temp} icon={icon}/>
           <Info humidity={humidity} wind={wind}/>
         </div>
       </div>
