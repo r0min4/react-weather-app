@@ -9,7 +9,7 @@ import Footer from "./Footer.js";
 export default function App() {
   let[city , setCity] =useState(""); 
   let[humidity , setHumidity] =useState(""); 
-  let[wind , setWind] =useState(0); 
+  let[wind , setWind] =useState(undefined); 
   let[temp, setTemp] =useState(""); 
   let[description, setDescription] =useState(""); 
   let[dt, setDt] =useState(0);
@@ -33,7 +33,7 @@ export default function App() {
     axios.get(url).then(result); 
   }
 
-  if(wind === 0){
+  if(wind === undefined){
     return (
       <div className="container">
         <div className="weather-app">
