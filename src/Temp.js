@@ -26,11 +26,11 @@ export default function Temp(props) {
           <span className="temperature" id="temperature">
             {Math.round(degree) }
           </span>
-          <a href="#" className="units temp" id="centigrad" onClick={toCentigrade}>
+          <a href="#" rel="noreferrer" className="units temp" id="centigrad" onClick={toCentigrade}>
             °C
           </a>
           <span className="units">|</span>
-          <a href="#" className="units" id="faren" onClick={faren}>
+          <a href="#" rel="noreferrer" className="units" id="faren" onClick={faren}>
             °F
           </a>
         </div>

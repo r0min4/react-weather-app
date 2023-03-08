@@ -41,7 +41,6 @@ export default function App() {
           <div className="row">
             <div className="col-9">
               <input
-                // id="search"
                 onChange = {updateCity}
                 type="search"
                 placeholder="Type a city.."
@@ -81,7 +80,6 @@ export default function App() {
           <div className="row">
             <div className="col-9">
               <input
-                // id="search"
                 onChange = {updateCity}
                 type="search"
                 placeholder="Type a city.."
