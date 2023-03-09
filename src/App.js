@@ -5,6 +5,7 @@ import City from "./City.js";
 import Temp from "./Temp.js";
 import Info from "./Info.js";
 import Footer from "./Footer.js";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
   let[city , setCity] =useState(""); 
