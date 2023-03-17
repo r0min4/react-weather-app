@@ -99,3 +99,11 @@
     color: rgb(103, 97, 97);
   }
   
+
+  .deactvie {
+    font-color: red;
+  }
+
+  .actvie {
+    font-color: blue;
+  }
