@@ -4,26 +4,28 @@ import "./styles.css";
 import City from "./City.js";
 import Temp from "./Temp.js";
 import Info from "./Info.js";
+import Forecast from "./Forecast.js";
 import Footer from "./Footer.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
   let[city , setCity] =useState(""); 
-  let[humidity , setHumidity] =useState(""); 
-  let[wind , setWind] =useState(undefined); 
-  let[temp, setTemp] =useState(""); 
-  let[description, setDescription] =useState(""); 
-  let[dt, setDt] =useState(0);
-  let[icon, setIcon] = useState("");
+  let[weatherData, setWeatherData] = useState({});
 
   function result(response){
-    setHumidity(response.data.main.humidity);
-    setWind(response.data.wind.speed);
-    setTemp(response.data.main.temp);
-    setDescription(response.data.weather[0].description);
-    setDt(response.data.dt);
-    setIcon(response.data.weather[0].icon);
-    console.log(response.data.main.temp);
+    setWeatherData({
+      humidity: response.data.main.humidity,
+      wind: response.data.wind.speed,
+      temp: response.data.main.temp,
+      description: response.data.weather[0].description,
+      dt: response.data.dt,
+      icon: response.data.weather[0].icon,
+      city: response.data.name,
+      lon: response.data.coord.lon,
+      lat: response.data.coord.lat
+    });
+
+
   }
   function updateCity(event){
     setCity(event.target.value);
@@ -34,7 +36,7 @@ export default function App() {
     axios.get(url).then(result); 
   }
 
-  if(wind === undefined){
+  if(weatherData.wind === undefined){
     return (
       <div className="container">
         <div className="weather-app">
@@ -103,12 +105,14 @@ export default function App() {
           </div>
           
         </form>
-        <City city={city} description={description} dt={dt}/>
+        <City city={weatherData.city} description={weatherData.description} dt={weatherData.dt}/>
 
-          <div className="row">
-            <Temp temp={temp} icon={icon}/>
-            <Info humidity={humidity} wind={wind}/>
+          <div className="row tempBox">
+            <Temp temp={weatherData.temp} icon={weatherData.icon}/>
+            <Info humidity={weatherData.humidity} wind={weatherData.wind}/>
           </div>
+         <Forecast lon={weatherData.lon} lat={weatherData.lat}/>
+          
         </div>
         <Footer />
       </div>

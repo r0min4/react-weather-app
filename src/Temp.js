@@ -18,7 +18,7 @@ export default function Temp(props) {
       <div className="clearfix">
         <div className="float-left all">
           {console.log(`temp: ${props.icon}`)}
-          <WeatherIcon icon={props.icon}/>
+          <WeatherIcon icon={props.icon} size={52}/>
           <br />
           <span className="temperature" id="temperature">
             {Math.round(degree) }
